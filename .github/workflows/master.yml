@@ -22,10 +22,14 @@ on:
     branches:
       - master
       - branch-*
+      - develop/**
+      - release/**
   pull_request:
     branches:
       - master
       - branch-*
+      - develop/**
+      - release/**
 
 concurrency:
   group: test-${{ github.head_ref || github.run_id }}
