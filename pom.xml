@@ -121,6 +121,10 @@
 
     <repositories>
         <repository>
+            <id>arenadata</id>
+            <url>https://maven.pkg.github.com/arenadata/*</url>
+        </repository>
+        <repository>
             <releases>
                 <enabled>true</enabled>
             </releases>
