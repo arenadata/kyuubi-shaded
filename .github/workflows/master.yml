@@ -45,7 +45,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [21]
+        java: [8]
     steps:
       - uses: actions/checkout@v4
       - name: Setup JDK ${{ matrix.java }}
