@@ -25,15 +25,14 @@ under the License.
     <parent>
         <groupId>org.apache.kyuubi</groupId>
         <artifactId>kyuubi-relocated-parent</artifactId>
-        <version>0.6.0</version>
+        <version>0.6.0.1-4.3.0-0</version>
     </parent>
 
     <artifactId>kyuubi-relocated-hive-service-rpc</artifactId>
     <description>Relocated Hive Service RPC classes used by Kyuubi internally.</description>
 
     <properties>
-        <hive.service.rpc.version>4.3.0.1-4.3.0-0</hive.service.rpc.version>
-        <java.version>21</java.version>
+        <hive.service.rpc.version>4.3.0.1-4.3.0-1</hive.service.rpc.version>
     </properties>
 
     <dependencies>

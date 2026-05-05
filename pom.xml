@@ -27,7 +27,7 @@
 
     <groupId>org.apache.kyuubi</groupId>
     <artifactId>kyuubi-relocated-parent</artifactId>
-    <version>0.6.0</version>
+    <version>0.6.0.1-4.3.0-0</version>
     <packaging>pom</packaging>
 
     <url>https://kyuubi.apache.org/</url>
@@ -111,9 +111,9 @@
         <!-- Needed for Spotless style check-->
         <spotless.java.googlejavaformat.version>1.7</spotless.java.googlejavaformat.version>
 
-        <distMgmtReleaseId>apache.releases.https</distMgmtReleaseId>
-        <distMgmtReleaseName>Apache Release Distribution Repository</distMgmtReleaseName>
-        <distMgmtReleaseUrl>https://repository.apache.org/service/local/staging/deploy/maven2</distMgmtReleaseUrl>
+        <distMgmtReleaseId>arenadata</distMgmtReleaseId>
+        <distMgmtReleaseName>Arenadata GitHub Packages</distMgmtReleaseName>
+        <distMgmtReleaseUrl>https://maven.pkg.github.com/arenadata/kyuubi-shaded</distMgmtReleaseUrl>
         <distMgmtSnapshotsId>apache.snapshots.https</distMgmtSnapshotsId>
         <distMgmtSnapshotsName>Apache Development Snapshot Repository</distMgmtSnapshotsName>
         <distMgmtSnapshotsUrl>https://repository.apache.org/content/repositories/snapshots</distMgmtSnapshotsUrl>
