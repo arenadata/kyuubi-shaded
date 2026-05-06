@@ -25,7 +25,7 @@ under the License.
     <parent>
         <groupId>org.apache.kyuubi</groupId>
         <artifactId>kyuubi-relocated-parent</artifactId>
-        <version>0.6.0</version>
+        <version>0.6.0.1-4.3.0-0</version>
     </parent>
 
     <artifactId>kyuubi-relocated-hive-metastore-client</artifactId>
@@ -33,7 +33,7 @@ under the License.
 
     <properties>
         <!-- Dependency versions -->
-        <hadoop.version>3.3.6</hadoop.version>
+        <hadoop.version>3.4.3.1-4.3.0-0</hadoop.version>
         <httpclient.version>4.5.14</httpclient.version>
         <httpcore.version>4.4.16</httpcore.version>
         <libfb303.version>0.9.3</libfb303.version>
@@ -61,7 +61,7 @@ under the License.
         </dependency>
         <dependency>
             <groupId>org.apache.kyuubi</groupId>
-            <artifactId>kyuubi-relocated-zookeeper-34</artifactId>
+            <artifactId>kyuubi-relocated-zookeeper-39</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
             <exclusions>

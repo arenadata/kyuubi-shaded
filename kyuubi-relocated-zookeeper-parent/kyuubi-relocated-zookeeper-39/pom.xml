@@ -28,19 +28,20 @@ under the License.
         <version>0.6.0.1-4.3.0-0</version>
     </parent>
 
-    <artifactId>kyuubi-relocated-zookeeper-34</artifactId>
-    <description>Relocated Zookeeper 3.4 classes used by Kyuubi internally.</description>
+    <artifactId>kyuubi-relocated-zookeeper-39</artifactId>
+    <description>Relocated Zookeeper 3.9 classes used by Kyuubi internally.</description>
 
     <properties>
-        <zookeeper.version>3.4.14</zookeeper.version>
-        <curator.version>2.12.0</curator.version>
-        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <yetus.version>0.5.0</yetus.version>
-        <jline.version>2.14.6</jline.version>
+        <zookeeper.version>3.9.5.1-4.3.0-0</zookeeper.version>
+        <curator.version>5.9.0.1-4.3.0-0</curator.version>
+        <netty.version>4.1.91.Final</netty.version>
     </properties>
 
     <dependencies>
         <dependency>
+            <!-- kyuubi distribution provides logging classes -->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
@@ -53,21 +54,10 @@ under the License.
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jline</groupId>
-            <artifactId>jline</artifactId>
-            <version>${jline.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>${zookeeper.version}</version>
             <exclusions>
-                <exclusion>
-                    <!-- only required for ZK servers, not clients -->
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty</artifactId>
-                </exclusion>
                 <exclusion>
                     <!-- kyuubi distribution provides logging classes -->
                     <groupId>log4j</groupId>
@@ -81,17 +71,36 @@ under the License.
                 <exclusion>
                     <!-- kyuubi distribution provides logging classes -->
                     <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <!-- kyuubi distribution provides logging classes -->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- Zookeeper dependency, that is inexplicably set to provided.
+                 Unfortunately not optional, because the ServerMetrics class, again inexplicably,
+                 has a hard dependency on it for testing purposes.-->
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>3.2.5</version>
+            <exclusions>
                 <exclusion>
-                    <!-- not relevant at runtime -->
-                    <groupId>com.google.code.findbugs</groupId>
-                    <artifactId>jsr305</artifactId>
+                    <!-- kyuubi distribution provides logging classes -->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
                 </exclusion>
                 <exclusion>
-                    <!-- not relevant at runtime -->
-                    <groupId>com.github.spotbugs</groupId>
-                    <artifactId>spotbugs-annotations</artifactId>
+                    <!-- kyuubi distribution provides logging classes -->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
