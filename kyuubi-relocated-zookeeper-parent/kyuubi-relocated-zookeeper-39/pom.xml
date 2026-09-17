@@ -34,9 +34,9 @@ under the License.
     <properties>
         <slf4j.version>1.7.36</slf4j.version>
         <yetus.version>0.5.0</yetus.version>
-        <zookeeper.version>3.9.5.1-4.3.0-0</zookeeper.version>
-        <curator.version>5.9.0.1-4.3.0-0</curator.version>
-        <netty.version>4.1.91.Final</netty.version>
+        <zookeeper.version>3.9.5.2-4.4.0-1</zookeeper.version>
+        <curator.version>5.9.0.2-4.4.0-0</curator.version>
+        <netty.version>4.1.137.Final</netty.version>
     </properties>
 
     <dependencies>
