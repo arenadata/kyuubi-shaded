@@ -32,7 +32,7 @@ under the License.
     <description>Relocated Hive Service RPC classes used by Kyuubi internally.</description>
 
     <properties>
-        <hive.service.rpc.version>4.3.0.2-4.4.0-0</hive.service.rpc.version>
+        <hive.service.rpc.version>4.3.0.3-4.5.0-0</hive.service.rpc.version>
     </properties>
 
     <dependencies>

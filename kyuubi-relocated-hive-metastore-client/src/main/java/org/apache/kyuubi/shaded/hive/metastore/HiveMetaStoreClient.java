@@ -264,15 +264,21 @@ public class HiveMetaStoreClient implements IMetaStoreClient, AutoCloseable {
   private <T extends TTransport> T configureThriftMaxMessageSize(T transport) {
     int maxThriftMessageSize =
         (int) MetastoreConf.getSizeVar(conf, ConfVars.THRIFT_METASTORE_CLIENT_MAX_MESSAGE_SIZE);
-    if (maxThriftMessageSize > 0) {
-      if (transport.getConfiguration() == null) {
+    TConfiguration configuration = transport.getConfiguration();
+    if (configuration == null) {
+      if (maxThriftMessageSize > 0) {
         LOG.warn(
             "TTransport {} is returning a null Configuration, Thrift max message size is not getting configured",
             transport.getClass().getName());
-        return transport;
       }
-      transport.getConfiguration().setMaxMessageSize(maxThriftMessageSize);
+      return transport;
     }
+    if (maxThriftMessageSize > 0) {
+      configuration.setMaxMessageSize(maxThriftMessageSize);
+    }
+    // A SASL frame carries a whole message, and Thrift rejects frames above the max frame size.
+    configuration.setMaxFrameSize(
+        Math.max(configuration.getMaxFrameSize(), configuration.getMaxMessageSize()));
     return transport;
   }
 
