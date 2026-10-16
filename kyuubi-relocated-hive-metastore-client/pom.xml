@@ -43,7 +43,7 @@ under the License.
         <thrift.home>you-must-set-this-to-run-thrift</thrift.home>
         <thrift.file>src/main/thrift/hive_metastore.thrift</thrift.file>
         <thrift.gen.dir>${basedir}/src/gen/thrift</thrift.gen.dir>
-        <thrift.args>-I ${thrift.home} -strict --gen java:beans,generated_annotations=suppress</thrift.args>
+        <thrift.args>-I ${thrift.home} -strict -r --gen java:beans,generated_annotations=suppress</thrift.args>
     </properties>
 
     <dependencies>
@@ -169,10 +169,11 @@ under the License.
                                 </goals>
                                 <phase>process-sources</phase>
                                 <configuration>
-                                    <basedir>${basedir}/src/gen/thrift/gen-javabean/org/apache/kyuubi/shaded/hive/metastore/api/</basedir>
+                                    <basedir>${basedir}/src/gen/thrift/gen-javabean/org/apache/kyuubi/shaded/</basedir>
                                     <includes>
-                                        <include>MetaException.java</include>
-                                        <include>ThriftHiveMetastore.java</include>
+                                        <include>hive/metastore/api/MetaException.java</include>
+                                        <include>hive/metastore/api/ThriftHiveMetastore.java</include>
+                                        <include>fb303/*.java</include>
                                     </includes>
                                     <tokenValueMap>${basedir}/src/main/resources/thrift-replacements.txt</tokenValueMap>
                                     <regex>true</regex>

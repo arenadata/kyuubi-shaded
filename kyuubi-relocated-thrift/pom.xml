@@ -33,8 +33,10 @@ under the License.
 
     <properties>
         <slf4j.version>1.7.36</slf4j.version>
-        <fb303.version>0.9.3</fb303.version>
-        <thrift.version>0.16.0</thrift.version>
+        <thrift.version>0.25.0</thrift.version>
+        <javax.servlet.version>3.1.0</javax.servlet.version>
+        <httpclient.version>4.5.14</httpclient.version>
+        <httpcore.version>4.4.16</httpcore.version>
     </properties>
 
     <dependencies>
@@ -46,17 +48,6 @@ under the License.
         </dependency>
         <dependency>
             <groupId>org.apache.thrift</groupId>
-            <artifactId>libfb303</artifactId>
-            <version>${fb303.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.thrift</groupId>
-                    <artifactId>libthrift</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
             <version>${thrift.version}</version>
             <exclusions>
@@ -65,6 +56,25 @@ under the License.
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!-- For the javax TServlet and the httpclient4 THttpClient kept from Thrift 0.16 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${httpcore.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -106,15 +116,18 @@ under the License.
                                         <exclude>**/module-info.class</exclude>
                                     </excludes>
                                 </filter>
+                                <filter>
+                                    <!-- Replaced by own javax and httpclient4 copies -->
+                                    <artifact>org.apache.thrift:libthrift</artifact>
+                                    <excludes>
+                                        <exclude>org/apache/thrift/THttpClientResponseHandler.class</exclude>
+                                        <exclude>org/apache/thrift/server/TServlet*.class</exclude>
+                                        <exclude>org/apache/thrift/server/TExtensibleServlet*.class</exclude>
+                                        <exclude>org/apache/thrift/transport/THttpClient*.class</exclude>
+                                    </excludes>
+                                </filter>
                             </filters>
                             <relocations>
-                                <relocation>
-                                    <pattern>com.facebook.fb303</pattern>
-                                    <shadedPattern>${shading.prefix}.fb303</shadedPattern>
-                                    <includes>
-                                        <include>com.facebook.fb303.**</include>
-                                    </includes>
-                                </relocation>
                                 <relocation>
                                     <pattern>org.apache.thrift</pattern>
                                     <shadedPattern>${shading.prefix}.thrift</shadedPattern>
