@@ -27,7 +27,7 @@
 
     <groupId>org.apache.kyuubi</groupId>
     <artifactId>kyuubi-relocated-parent</artifactId>
-    <version>0.6.0.1-4.4.0-0</version>
+    <version>0.6.0.2-4.5.0-0</version>
     <packaging>pom</packaging>
 
     <url>https://kyuubi.apache.org/</url>
